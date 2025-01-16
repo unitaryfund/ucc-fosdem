@@ -1,11 +1,19 @@
 ---
 title: "Unitary Compiler Collection `ucc`"
 author: "nate stemen"
-format: revealjs
-revealjs:
-  theme: solarized
-  transition: slide
+format: "revealjs"
 ---
+
+# What's in the name?
+
+Unitary
+: $\mathsf{U}(n) := \{U \in \mathbb{C}^{n\times n} | UU^\dagger = \mathbb{1}\}$
+
+Compiler
+: Translates computer code from one language to another.
+
+Collection
+: A group of objects or works to be seen, studied, or kept together.
 
 # What is a quantum compiler?
 
@@ -16,9 +24,17 @@ revealjs:
 
 Lots of different frontends that are made by hardware providers to suit their own needs.
 
-# What problems does `gcc`/`clang` solve?
+# What problems did/does `gcc`/`clang` solve?
 
 they make it easy to compile a program to any backend.
+
+# How does `ucc` perform?
+
+*results*
+
+# Get involved!
+
+we need and want your help!
 
 # Slide 2 Title
 
