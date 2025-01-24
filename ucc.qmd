@@ -1,6 +1,6 @@
 ---
 title: "Unitary Compiler Collection `ucc`"
-author: "nate stemen"
+author: "nate stemen, jordan sullivan"
 format: "revealjs"
 ---
 
@@ -8,9 +8,10 @@ format: "revealjs"
 
 Unitary
 : $\mathsf{U}(n) := \{U \in \mathbb{C}^{n\times n} | UU^\dagger = \mathbb{1}\}$
+Or if you aren't a group theory nerd, operations that are trivially reversible: their inverse ${U^-1}$ is just their conjugate transpose ${U^\dagger}$
 
 Compiler
-: Translates computer code from one language to another.
+: Translates computer code from one language to another, usually lower-level, language.
 
 Collection
 : A group of objects or works to be seen, studied, or kept together.
