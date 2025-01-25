@@ -1,14 +1,74 @@
 ---
 title: "Unitary Compiler Collection `ucc`"
-author: "nate stemen, jordan sullivan"
-format: "revealjs"
+author:
+    name: nate stemen
+    url: https://nates.place
+    email: nate@unitary.foundation
+    affiliation: Unitary Foundation
+    affiliation-url: https://unitary.foundation
+date: "2025-02-02"
+footer: "{{< fa brands github >}} [unitaryfund.github.io/ucc-fosdem](https://unitaryfund.github.io/ucc-fosdem/)"
+format:
+    revealjs:
+        slide-number: c/t
+        preview-links: true
+        logo: https://raw.githubusercontent.com/unitaryfund/unitary.foundation/refs/heads/main/src/assets/svg/logo.svg
+        css: styles.css
+        math: katex
 ---
+
+# The team <img src="UCC.png" alt="Logo" style="width: 250px; vertical-align: middle;">
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; align-items: center;">
+
+<div style="flex: 1; max-width: 120px; text-align: center;">
+  ![](Jordan.png){.rounded width=100}
+
+  Jordan Sullivan
+</div>
+
+<div style="flex: 1; max-width: 120px; text-align: center;">
+  ![](Misty.png){.rounded width=100}
+
+  Misty Wahl
+</div>
+
+<div style="flex: 1; max-width: 120px; text-align: center;">
+  ![](Nate.png){.rounded width=100}
+
+  Nate Stemen
+</div>
+
+<div style="flex: 1; max-width: 120px; text-align: center;">
+  ![](Will.png){.rounded width=100}
+
+  Will Zeng
+</div>
+
+<div style="flex: 1; max-width: 120px; text-align: center;">
+  ![](Nathan.png){.rounded width=100}
+
+  Nathan Shammah
+</div>
+
+</div>
+
+# Transpilation
+
+![](circuit.pdf)
+
+# Transpilation
+
+![](circuit2.svg)
 
 # What's in the name?
 
 Unitary
-: $\mathsf{U}(n) := \{U \in \mathbb{C}^{n\times n} | UU^\dagger = \mathbb{1}\}$
-Or if you aren't a group theory nerd, operations that are trivially reversible: their inverse ${U^-1}$ is just their conjugate transpose ${U^\dagger}$
+: $\mathsf{U}(n) := \{U \in \mathbb{C}^{n\times n} \mid U\cdot U^\dagger = \mathbb{1}\}$
+
+::: {.notes}
+Or if you aren't a group theory nerd, operations that are trivially reversible: their inverse $U^{-1}$ is just their conjugate transpose $U^{\dagger}$
+:::
 
 Compiler
 : Translates computer code from one language to another, usually lower-level, language.
@@ -18,16 +78,68 @@ Collection
 
 # What is a quantum compiler?
 
-- Point 1
-- Point 2
+$$
+\begin{tikzpicture}
+   \node at (0,0) {$\ket{0}$};
+   \draw (0.5,0) -- (2,0);
+   \node at (2.5,0) {H};
+   \draw (3,0) -- (5,0);
+\end{tikzpicture}
+$$
+
+$$
+\begin{quantikz}
+\lstick{\ket{0}} & \gate{H} & \ctrl{1} & \meter{} \\
+\lstick{\ket{0}} & \qw      & \targ{}  & \qw
+\end{quantikz}
+$$
+
+```{mermaid}
+graph LR
+    A[Quantum algorithm] --> B[Quantum circuit]
+    A --> Class[Classical processing]
+    B -->|quantum circuit compiler| C[Optimized quantum circuit]
+    C --> D[Quantum Circuit Layer]
+    D --> E[Quantum Gate Layer]
+    E --> F[Physical Layer]
+
+```
+
 
 # What does the ecosystem look like?
 
 Lots of different frontends that are made by hardware providers to suit their own needs.
 
-# What problems did/does `gcc`/`clang` solve?
+# What problems did/does `gcc`/`clang` enable?
 
+```{mermaid}
+graph LR
+    A[Quantum algorithm] --> B[Quantum circuit]
+    A --> Class[Classical processing]
+    B -->|quantum circuit compiler| C[Optimized quantum circuit]
+    C --> D[Quantum Circuit Layer]
+    D --> E[Quantum Gate Layer]
+    E --> F[Physical Layer]
+
+```
 they make it easy to compile a program to any backend.
+
+# How can I use `ucc`?
+
+**Install**
+
+```bash
+$ pip install ucc
+```
+
+**Run!**
+```python
+import ucc
+
+circuit = ...  # must be one of cirq, qiskit, PyTKET, qasm
+
+ucc.compile(circuit)
+```
 
 # How does `ucc` perform?
 

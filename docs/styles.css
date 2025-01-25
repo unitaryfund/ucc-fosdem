@@ -1,0 +1,11 @@
+.reveal {
+    background-color: #F2CCA2; /* Light gray background */
+}
+
+.reveal .slide {
+    background-color: #F2CCA2; /* Ensures individual slides also match */
+}
+
+.rounded {
+    border-radius: 45%;
+}

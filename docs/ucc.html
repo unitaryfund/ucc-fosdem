@@ -6,10 +6,13 @@
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
   <meta name="author" content="nate stemen">
+  <meta name="dcterms.date" content="2025-02-02">
   <title>Unitary Compiler Collection ucc</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -95,6 +98,7 @@
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="site_libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
+  <link rel="stylesheet" href="styles.css">
   <link href="site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -186,6 +190,9 @@
       margin-right: 0; 
     }
   </style>
+  <script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -197,22 +204,82 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-nate stemen 
+<a href="https://nates.place">nate stemen</a> 
 </div>
+<div class="quarto-title-author-email">
+<a href="mailto:nate@unitary.foundation">nate@unitary.foundation</a>
 </div>
+        <p class="quarto-title-affiliation">
+            <a href="https://unitary.foundation">
+            Unitary Foundation
+            </a>
+          </p>
+    </div>
 </div>
 
+  <p class="date">2025-02-02</p>
 </section>
+<section id="the-team" class="title-slide slide level1 center">
+<h1>The team <img src="UCC.png" alt="Logo" style="width: 250px; vertical-align: middle;"></h1>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; align-items: center;">
+<div style="flex: 1; max-width: 120px; text-align: center;">
+<p><img data-src="Jordan.png" class="rounded" width="100"></p>
+<p>Jordan Sullivan</p>
+</div>
+<div style="flex: 1; max-width: 120px; text-align: center;">
+<p><img data-src="Misty.png" class="rounded" width="100"></p>
+<p>Misty Wahl</p>
+</div>
+<div style="flex: 1; max-width: 120px; text-align: center;">
+<p><img data-src="Nate.png" class="rounded" width="100"></p>
+<p>Nate Stemen</p>
+</div>
+<div style="flex: 1; max-width: 120px; text-align: center;">
+<p><img data-src="Will.png" class="rounded" width="100"></p>
+<p>Will Zeng</p>
+</div>
+<div style="flex: 1; max-width: 120px; text-align: center;">
+<p><img data-src="Nathan.png" class="rounded" width="100"></p>
+<p>Nathan Shammah</p>
+</div>
+</div>
+</section>
+
+<section id="transpilation" class="title-slide slide level1 center">
+<h1>Transpilation</h1>
+<p><embed data-src="circuit.pdf"></p>
+</section>
+
+<section id="transpilation-1" class="title-slide slide level1 center">
+<h1>Transpilation</h1>
+
+<img data-src="circuit2.svg" class="r-stretch"></section>
+
 <section id="whats-in-the-name" class="title-slide slide level1 center">
 <h1>What’s in the name?</h1>
 <dl>
 <dt>Unitary</dt>
 <dd>
-<span class="math inline">\(\mathsf{U}(n) := \{U \in \mathbb{C}^{n\times n} | UU^\dagger = \mathbb{1}\}\)</span>
+<span class="math inline">\(\mathsf{U}(n) := \{U \in \mathbb{C}^{n\times n} \mid U\cdot U^\dagger = \mathbb{1}\}\)</span>
 </dd>
+</dl>
+<aside class="notes">
+<p>Or if you aren’t a group theory nerd, operations that are trivially reversible: their inverse <span class="math inline">\(U^{-1}\)</span> is just their conjugate transpose <span class="math inline">\(U^{\dagger}\)</span></p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<dl>
 <dt>Compiler</dt>
 <dd>
-Translates computer code from one language to another.
+Translates computer code from one language to another, usually lower-level, language.
 </dd>
 <dt>Collection</dt>
 <dd>
@@ -223,10 +290,39 @@ A group of objects or works to be seen, studied, or kept together.
 
 <section id="what-is-a-quantum-compiler" class="title-slide slide level1 center">
 <h1>What is a quantum compiler?</h1>
-<ul>
-<li>Point 1</li>
-<li>Point 2</li>
-</ul>
+<p><span class="math display">\[
+\begin{tikzpicture}
+   \node at (0,0) {$\ket{0}$};
+   \draw (0.5,0) -- (2,0);
+   \node at (2.5,0) {H};
+   \draw (3,0) -- (5,0);
+\end{tikzpicture}
+\]</span></p>
+<p><span class="math display">\[
+\begin{quantikz}
+\lstick{\ket{0}} &amp; \gate{H} &amp; \ctrl{1} &amp; \meter{} \\
+\lstick{\ket{0}} &amp; \qw      &amp; \targ{}  &amp; \qw
+\end{quantikz}
+\]</span></p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[Quantum algorithm] --&gt; B[Quantum circuit]
+    A --&gt; Class[Classical processing]
+    B --&gt;|quantum circuit compiler| C[Optimized quantum circuit]
+    C --&gt; D[Quantum Circuit Layer]
+    D --&gt; E[Quantum Gate Layer]
+    E --&gt; F[Physical Layer]
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
 
 <section id="what-does-the-ecosystem-look-like" class="title-slide slide level1 center">
@@ -234,9 +330,40 @@ A group of objects or works to be seen, studied, or kept together.
 <p>Lots of different frontends that are made by hardware providers to suit their own needs.</p>
 </section>
 
-<section id="what-problems-diddoes-gccclang-solve" class="title-slide slide level1 center">
-<h1>What problems did/does <code>gcc</code>/<code>clang</code> solve?</h1>
+<section id="what-problems-diddoes-gccclang-enable" class="title-slide slide level1 center">
+<h1>What problems did/does <code>gcc</code>/<code>clang</code> enable?</h1>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[Quantum algorithm] --&gt; B[Quantum circuit]
+    A --&gt; Class[Classical processing]
+    B --&gt;|quantum circuit compiler| C[Optimized quantum circuit]
+    C --&gt; D[Quantum Circuit Layer]
+    D --&gt; E[Quantum Gate Layer]
+    E --&gt; F[Physical Layer]
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>they make it easy to compile a program to any backend.</p>
+</section>
+
+<section id="how-can-i-use-ucc" class="title-slide slide level1 center">
+<h1>How can I use <code>ucc</code>?</h1>
+<p><strong>Install</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">$</span> pip install ucc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Run!</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> ucc</span>
+<span id="cb2-2"><a></a></span>
+<span id="cb2-3"><a></a>circuit <span class="op">=</span> ...  <span class="co"># must be one of cirq, qiskit, PyTKET, qasm</span></span>
+<span id="cb2-4"><a></a></span>
+<span id="cb2-5"><a></a>ucc.<span class="bu">compile</span>(circuit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 
 <section id="how-does-ucc-perform" class="title-slide slide level1 center">
@@ -251,14 +378,16 @@ A group of objects or works to be seen, studied, or kept together.
 
 <section id="slide-2-title" class="title-slide slide level1 center">
 <h1>Slide 2 Title</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a><span class="bu">print</span>(<span class="st">"Code example"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a><span class="bu">print</span>(<span class="st">"Code example"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
 
 
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="https://raw.githubusercontent.com/unitaryfund/unitary.foundation/refs/heads/main/src/assets/svg/logo.svg" class="slide-logo"></p>
 <div class="footer footer-default">
-
+<p><i class="fa-brands fa-github" aria-label="github"></i> <a href="https://unitaryfund.github.io/ucc-fosdem/">unitaryfund.github.io/ucc-fosdem</a></p>
 </div>
 </div></div>
 
@@ -311,7 +440,7 @@ A group of objects or works to be seen, studied, or kept together.
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -413,7 +542,7 @@ A group of objects or works to be seen, studied, or kept together.
         hideCursorTime: 5000,
 
         // Opens links in an iframe preview overlay
-        previewLinks: false,
+        previewLinks: true,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
         transition: 'none',
