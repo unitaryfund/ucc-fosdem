@@ -1,5 +1,5 @@
 ---
-title: "Unitary Compiler Collection `ucc`"
+title: "`U`nitary `C`ompiler `C`ollection"
 author:
     name: nate stemen
     url: https://nates.place
@@ -17,41 +17,19 @@ format:
         math: katex
 ---
 
-# The team <img src="UCC.png" alt="Logo" style="width: 250px; vertical-align: middle;">
+# The <img src="UCC.png" alt="Logo" style="width: 150px; vertical-align: middle;"> team
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; align-items: center;">
+::: {layout="[1,1,1,1,1]"}
+![Jordan Sullivan](Jordan.png){.rounded}
 
-<div style="flex: 1; max-width: 120px; text-align: center;">
-  ![](Jordan.png){.rounded width=100}
+![Misty Wahl](Misty.png){.rounded}
 
-  Jordan Sullivan
-</div>
+![Nate Stemen](Nate.png){.rounded}
 
-<div style="flex: 1; max-width: 120px; text-align: center;">
-  ![](Misty.png){.rounded width=100}
+![Will Zeng](Will.png){.rounded}
 
-  Misty Wahl
-</div>
-
-<div style="flex: 1; max-width: 120px; text-align: center;">
-  ![](Nate.png){.rounded width=100}
-
-  Nate Stemen
-</div>
-
-<div style="flex: 1; max-width: 120px; text-align: center;">
-  ![](Will.png){.rounded width=100}
-
-  Will Zeng
-</div>
-
-<div style="flex: 1; max-width: 120px; text-align: center;">
-  ![](Nathan.png){.rounded width=100}
-
-  Nathan Shammah
-</div>
-
-</div>
+![Nathan Shammah](Nathan.png){.rounded}
+:::
 
 # Transpilation
 
@@ -147,7 +125,26 @@ ucc.compile(circuit)
 
 # Get involved!
 
-we need and want your help!
+:::: {.columns}
+
+::: {.column width="50%"}
+
+::: {.callout-note title="We want you!" style="text-align:left;!important"}
+
+1. Test `ucc` on your workflow
+2. Contribute a new compiler pass
+3. Add documentation
+4. Help benchmark `ucc`
+:::
+
+:::
+
+::: {.column width="49%"}
+repo: [`unitaryfund/ucc`](https://https://github.com/unitaryfund/ucc)
+docs: [`ucc.readthedocs.io`](https://ucc.readthedocs.io/en/latest/)
+:::
+
+::::
 
 # Slide 2 Title
 
