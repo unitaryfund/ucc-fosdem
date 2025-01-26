@@ -220,7 +220,7 @@
   <p class="date">2025-02-02</p>
 </section>
 <section id="the-team" class="title-slide slide level1 center">
-<h1>The <img src="UCC.png" alt="Logo" style="width: 150px; vertical-align: middle;"> team</h1>
+<h1>The <img src="images/UCC.png" alt="UCC logo" style="width: 150px; vertical-align: middle;"> team</h1>
 <div>
 
 </div>
@@ -229,7 +229,7 @@
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Jordan.png" class="rounded"></p>
+<p><img data-src="images/Jordan.png" class="rounded"></p>
 <figcaption>Jordan Sullivan</figcaption>
 </figure>
 </div>
@@ -237,7 +237,7 @@
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Misty.png" class="rounded"></p>
+<p><img data-src="images/Misty.png" class="rounded"></p>
 <figcaption>Misty Wahl</figcaption>
 </figure>
 </div>
@@ -245,7 +245,7 @@
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Nate.png" class="rounded"></p>
+<p><img data-src="images/Nate.png" class="rounded"></p>
 <figcaption>Nate Stemen</figcaption>
 </figure>
 </div>
@@ -253,7 +253,7 @@
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Will.png" class="rounded"></p>
+<p><img data-src="images/Will.png" class="rounded"></p>
 <figcaption>Will Zeng</figcaption>
 </figure>
 </div>
@@ -261,7 +261,7 @@
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="Nathan.png" class="rounded"></p>
+<p><img data-src="images/Nathan.png" class="rounded"></p>
 <figcaption>Nathan Shammah</figcaption>
 </figure>
 </div>
@@ -270,24 +270,16 @@
 </div>
 </section>
 
-<section id="transpilation" class="title-slide slide level1 center">
-<h1>Transpilation</h1>
-<p><embed data-src="circuit.pdf"></p>
-</section>
-
-<section id="transpilation-1" class="title-slide slide level1 center">
-<h1>Transpilation</h1>
-
-<img data-src="circuit2.svg" class="r-stretch"></section>
-
 <section id="whats-in-the-name" class="title-slide slide level1 center">
 <h1>What’s in the name?</h1>
+<div class="fragment fade-in-then-semi-out">
 <dl>
-<dt>Unitary</dt>
+<dt><code>U</code>nitary</dt>
 <dd>
 <span class="math inline">\(\mathsf{U}(n) := \{U \in \mathbb{C}^{n\times n} \mid U\cdot U^\dagger = \mathbb{1}\}\)</span>
 </dd>
 </dl>
+</div>
 <aside class="notes">
 <p>Or if you aren’t a group theory nerd, operations that are trivially reversible: their inverse <span class="math inline">\(U^{-1}\)</span> is just their conjugate transpose <span class="math inline">\(U^{\dagger}\)</span></p>
 <style type="text/css">
@@ -301,34 +293,43 @@
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+<div class="fragment fade-in-then-semi-out">
 <dl>
-<dt>Compiler</dt>
+<dt><code>C</code>ompiler</dt>
 <dd>
 Translates computer code from one language to another, usually lower-level, language.
 </dd>
-<dt>Collection</dt>
+</dl>
+</div>
+<div class="r-stack">
+<div class="fragment fade-in-then-out" title="Terminology">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Terminology</strong></p>
+</div>
+<div class="callout-content">
+<p>Somtimes the word <strong>transpiler</strong> is used when the abtraction level of the input and output are the same.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<dl>
+<dt><code>C</code>ollection</dt>
 <dd>
 A group of objects or works to be seen, studied, or kept together.
 </dd>
 </dl>
+</div>
+</div>
 </section>
 
 <section id="what-is-a-quantum-compiler" class="title-slide slide level1 center">
 <h1>What is a quantum compiler?</h1>
-<p><span class="math display">\[
-\begin{tikzpicture}
-   \node at (0,0) {$\ket{0}$};
-   \draw (0.5,0) -- (2,0);
-   \node at (2.5,0) {H};
-   \draw (3,0) -- (5,0);
-\end{tikzpicture}
-\]</span></p>
-<p><span class="math display">\[
-\begin{quantikz}
-\lstick{\ket{0}} &amp; \gate{H} &amp; \ctrl{1} &amp; \meter{} \\
-\lstick{\ket{0}} &amp; \qw      &amp; \targ{}  &amp; \qw
-\end{quantikz}
-\]</span></p>
 <div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -355,28 +356,84 @@ A group of objects or works to be seen, studied, or kept together.
 <p>Lots of different frontends that are made by hardware providers to suit their own needs.</p>
 </section>
 
-<section id="what-problems-diddoes-gccclang-enable" class="title-slide slide level1 center">
-<h1>What problems did/does <code>gcc</code>/<code>clang</code> enable?</h1>
+<section id="what-problems-diddoes-gccclang-enable" class="title-slide slide level1 center" data-auto-animate="true">
+<h1 data-id="quarto-animate-title">What problems did/does <code>gcc</code>/<code>clang</code> enable?</h1>
 <div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">graph LR
-    A[Quantum algorithm] --&gt; B[Quantum circuit]
-    A --&gt; Class[Classical processing]
-    B --&gt;|quantum circuit compiler| C[Optimized quantum circuit]
-    C --&gt; D[Quantum Circuit Layer]
-    D --&gt; E[Quantum Gate Layer]
-    E --&gt; F[Physical Layer]
+    subgraph Frontends
+        A[Clang C/C++]
+        B[Rust]
+        C[Swift]
+        D[Custom Frontend]
+    end
 
+    E[gcc]
+
+    subgraph Backends
+        H[x86]
+        I[ARM]
+        J[WebAssembly]
+        K[PowerPC]
+    end
+
+    A --&gt; E
+    B --&gt; E
+    C --&gt; E
+    D --&gt; E
+
+    E --&gt; H
+    E --&gt; I
+    E --&gt; J
+    E --&gt; K
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-<p>they make it easy to compile a program to any backend.</p>
+</section>
+
+<section id="what-problems-diddoes-gccclang-enable-1" class="title-slide slide level1 center" data-auto-animate="true">
+<h1 data-id="quarto-animate-title">What problems did/does <code>gcc</code>/<code>clang</code> enable?</h1>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    subgraph Frontends
+        A[Qiskit]
+        B[Cirq]
+        C[OpenQASM]
+        D[PyTKET]
+    end
+
+    E[ucc]
+
+    subgraph Backends
+        H[IBMQ]
+        I[Quantinuum]
+        J[Google]
+    end
+
+    A --&gt; E
+    B --&gt; E
+    C --&gt; E
+    D --&gt; E
+
+    E --&gt; H
+    E --&gt; I
+    E --&gt; J
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
 
 <section id="how-can-i-use-ucc" class="title-slide slide level1 center">
@@ -393,8 +450,8 @@ A group of objects or works to be seen, studied, or kept together.
 
 <section id="how-does-ucc-perform" class="title-slide slide level1 center">
 <h1>How does <code>ucc</code> perform?</h1>
-<p><em>results</em></p>
-</section>
+
+<img data-src="images/results.png" class="r-stretch"></section>
 
 <section id="get-involved" class="title-slide slide level1 center">
 <h1>Get involved!</h1>

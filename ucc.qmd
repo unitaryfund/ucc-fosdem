@@ -17,60 +17,50 @@ format:
         math: katex
 ---
 
-# The <img src="UCC.png" alt="Logo" style="width: 150px; vertical-align: middle;"> team
+# The <img src="images/UCC.png" alt="UCC logo" style="width: 150px; vertical-align: middle;"> team
 
 ::: {layout="[1,1,1,1,1]"}
-![Jordan Sullivan](Jordan.png){.rounded}
+![Jordan Sullivan](images/Jordan.png){.rounded}
 
-![Misty Wahl](Misty.png){.rounded}
+![Misty Wahl](images/Misty.png){.rounded}
 
-![Nate Stemen](Nate.png){.rounded}
+![Nate Stemen](images/Nate.png){.rounded}
 
-![Will Zeng](Will.png){.rounded}
+![Will Zeng](images/Will.png){.rounded}
 
-![Nathan Shammah](Nathan.png){.rounded}
+![Nathan Shammah](images/Nathan.png){.rounded}
 :::
-
-# Transpilation
-
-![](circuit.pdf)
-
-# Transpilation
-
-![](circuit2.svg)
 
 # What's in the name?
 
-Unitary
+::: {.fragment .fade-in-then-semi-out}
+`U`nitary
 : $\mathsf{U}(n) := \{U \in \mathbb{C}^{n\times n} \mid U\cdot U^\dagger = \mathbb{1}\}$
+:::
 
 ::: {.notes}
 Or if you aren't a group theory nerd, operations that are trivially reversible: their inverse $U^{-1}$ is just their conjugate transpose $U^{\dagger}$
 :::
 
-Compiler
+::: {.fragment .fade-in-then-semi-out}
+`C`ompiler
 : Translates computer code from one language to another, usually lower-level, language.
+:::
 
-Collection
+
+:::: {.r-stack}
+::: {.callout-warning title="Terminology" .fragment .fade-in-then-out}
+Somtimes the word **transpiler** is used when the abtraction level of the input and output are the same.
+:::
+
+::: {.fragment}
+`C`ollection
 : A group of objects or works to be seen, studied, or kept together.
+:::
+::::
+
 
 # What is a quantum compiler?
-
-$$
-\begin{tikzpicture}
-   \node at (0,0) {$\ket{0}$};
-   \draw (0.5,0) -- (2,0);
-   \node at (2.5,0) {H};
-   \draw (3,0) -- (5,0);
-\end{tikzpicture}
-$$
-
-$$
-\begin{quantikz}
-\lstick{\ket{0}} & \gate{H} & \ctrl{1} & \meter{} \\
-\lstick{\ket{0}} & \qw      & \targ{}  & \qw
-\end{quantikz}
-$$
 
 ```{mermaid}
 graph LR
@@ -88,19 +78,65 @@ graph LR
 
 Lots of different frontends that are made by hardware providers to suit their own needs.
 
-# What problems did/does `gcc`/`clang` enable?
+# What problems did/does `gcc`/`clang` enable? {auto-animate=true}
 
 ```{mermaid}
 graph LR
-    A[Quantum algorithm] --> B[Quantum circuit]
-    A --> Class[Classical processing]
-    B -->|quantum circuit compiler| C[Optimized quantum circuit]
-    C --> D[Quantum Circuit Layer]
-    D --> E[Quantum Gate Layer]
-    E --> F[Physical Layer]
+    subgraph Frontends
+        A[Clang C/C++]
+        B[Rust]
+        C[Swift]
+        D[Custom Frontend]
+    end
 
+    E[gcc]
+
+    subgraph Backends
+        H[x86]
+        I[ARM]
+        J[WebAssembly]
+        K[PowerPC]
+    end
+
+    A --> E
+    B --> E
+    C --> E
+    D --> E
+
+    E --> H
+    E --> I
+    E --> J
+    E --> K
 ```
-they make it easy to compile a program to any backend.
+
+# What problems did/does `gcc`/`clang` enable? {auto-animate=true}
+
+```{mermaid}
+graph LR
+    subgraph Frontends
+        A[Qiskit]
+        B[Cirq]
+        C[OpenQASM]
+        D[PyTKET]
+    end
+
+    E[ucc]
+
+    subgraph Backends
+        H[IBMQ]
+        I[Quantinuum]
+        J[Google]
+    end
+
+    A --> E
+    B --> E
+    C --> E
+    D --> E
+
+    E --> H
+    E --> I
+    E --> J
+```
 
 # How can I use `ucc`?
 
@@ -121,7 +157,7 @@ ucc.compile(circuit)
 
 # How does `ucc` perform?
 
-*results*
+![](images/results.png)
 
 # Get involved!
 

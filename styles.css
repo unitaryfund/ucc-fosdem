@@ -9,3 +9,8 @@
 .rounded {
     border-radius: 10%;
 }
+
+#title-slide .author:after {
+    content: url('fosdem.png') ;
+    display: block;
+  }
