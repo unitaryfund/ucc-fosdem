@@ -182,9 +182,29 @@ docs: [`ucc.readthedocs.io`](https://ucc.readthedocs.io/en/latest/)
 
 ::::
 
-# Slide 2 Title
+# Got an idea? {.smaller}
 
-```python
-print("Code example")
-```
+::: {.columns}
+
+::: {.column}
+**Apply for a microgrant!**
+![](images/microgrants.png)
+:::
+
+::: {.column}
+**Approach:**
+
+- $4k no strings attached
+- Aimed at explorers in quantum
+- Generally open-source, but also community projects
+- Usually 3-6 months duration
+- Short online applications
+
+::: {.fragment}
+Apply @ [**unitary.foundation/grants**]{style="color:red;"}
+:::
+:::
+
+:::
+
 
