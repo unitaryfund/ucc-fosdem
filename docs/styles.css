@@ -10,10 +10,7 @@
     border-radius: 10%;
 }
 
-#title-slide .author:after {
-    content: url('fosdem.png') ;
-    display: block;
-  }
+/* 82A2A2 */
 
 div.callout-note .callout-icon::before {
     color: #ff5252 !important;

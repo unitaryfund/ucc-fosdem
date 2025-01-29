@@ -1,0 +1,44 @@
+\documentclass{standalone}
+\usepackage{quantikz}
+
+\usepackage{xcolor}
+\usepackage{pagecolor}
+
+\definecolor{ucc}{HTML}{F2CCA2}
+\definecolor{uccalt}{HTML}{688282}
+
+\begin{document}
+
+\pagecolor{ucc}
+
+% \begin{quantikz}[color=uccalt]
+% & \gate{}    & \gate{} & \gate[3]{} & \qw        & \gate[2]{} & \gate{} & \qw \\
+% & \gate[2]{} & \qw     &            & \gate[2]{} &            & \gate{} & \qw \\
+% &            & \qw     &            &            & \gate{}    & \qw     & \qw 
+% \end{quantikz}
+
+\begin{quantikz}[color=uccalt]
+& \gate[style={fill=red!20}]{R_z(\theta)}    & \gate[style={fill=red!20}]{R_z(\phi)} & \gate[3]{} & \qw        & \gate[2]{} & \gate{} & \qw \\
+& \gate[2]{} & \qw     &            & \gate[2]{} &            & \gate{} & \qw \\
+&            & \qw     &            &            & \gate{}    & \qw     & \qw 
+\end{quantikz}
+
+% \begin{quantikz}[color=uccalt]
+% & \gate[style={fill=green!20}]{}    & \phantomgate{}  & \gate[3]{} & \qw        & \gate[2]{} & \gate{} & \qw \\
+% & \gate[2]{} & \qw &            & \gate[2]{} &            & \gate{} & \qw \\
+% &            & \qw &            &            & \gate{}    & \qw & \qw
+% \end{quantikz}
+
+% \begin{quantikz}
+% & \gate{}    & \qw        & \gate[3]{} & \qw & \gate[2]{} & \gate{} \\
+% & \gate[2]{} & \gate[2]{} &            & \qw &            & \gate{} \\
+% &            &            &            & \qw & \gate{}    & \qw
+% \end{quantikz}
+
+% \begin{quantikz}
+% & \gate{}    & \qw & \gate[3]{} & \qw & \gate[2]{} & \gate{} \\
+% & \gate[2]{} & \qw &            & \qw &            & \gate{} \\
+% &            & \qw &            & \qw & \gate{}    & \qw
+% \end{quantikz}
+
+\end{document}

@@ -17,7 +17,7 @@ format:
         math: katex
 ---
 
-# The <img src="images/UCC.png" alt="UCC logo" style="width: 150px; vertical-align: middle;"> team
+# The <img src="images/UCC.png" alt="UCC logo" style="width: 200px; vertical-align: middle;"> team
 
 ::: {layout="[1,1,1,1,1]"}
 ![Jordan Sullivan](images/Jordan.png){.rounded}
@@ -60,26 +60,130 @@ Somtimes the word **transpiler** is used when the abtraction level of the input 
 ::::
 
 
-# What is a quantum compiler?
+# What is a quantum compiler? {auto-animate=true}
 
-```{mermaid}
-graph LR
-    A[Quantum algorithm] --> B[Quantum circuit]
-    A --> Class[Classical processing]
-    B -->|quantum circuit compiler| C[Optimized quantum circuit]
-    C --> D[Quantum Circuit Layer]
-    D --> E[Quantum Gate Layer]
-    E --> F[Physical Layer]
+<!-- {{< placeholder 1500 500 >}} -->
 
-```
+:::: {.r-stack}
+::: {.fragment}
+![](images/circuit1.png)
+:::
+
+::: {.fragment}
+![](images/circuit2.png)
+:::
+
+::: {.fragment}
+![](images/circuit3.png)
+:::
+
+
+::::
+
+<!-- a placeholder image showing some examples of how a circuit is transformed through transpilation -->
+
+::: {.notes}
+a quantum compiler
+:::
 
 
 # What does the ecosystem look like?
 
+```{mermaid}
+graph TD
+    subgraph google
+        A(Cirq)
+        B(Willow)
+        A -->|cirq.transformers| B
+    end
+    subgraph ibm
+        C(Qiskit)
+        D(ibmq)
+        C -->|qiskit.transpiler| D
+    end
+    subgraph quantinuum
+        E(tket)
+        H(tket2)
+        F(H2)
+        E -->|pytket.passes| F
+        H --> F
+    end
+    G(QASM)
+    G --> google
+    G -.-> ibm
+    G --> quantinuum
+
+    %% C --> G --> A
+```
+
 Lots of different frontends that are made by hardware providers to suit their own needs.
 
-# What problems did/does `gcc`/`clang` enable? {auto-animate=true}
+# What's so great about (classical) compilers?
 
+::: {.columns}
+::: {.column width="40%" .fragment}
+A standardized **Intermediate Representation** (IR)
+:::
+::: {.column}
+
+::: {.r-stack}
+
+::: {.fragment .fade-in-then-out}
+```{mermaid}
+graph LR
+    style Frontends fill:#F2CCA2,stroke:#F2CCA2
+    style Backends fill:#F2CCA2,stroke:#F2CCA2
+
+    style A stroke:#82A2A2,color:black
+    style B stroke:#82A2A2,color:black
+    style C stroke:#82A2A2,color:black
+    style D stroke:#82A2A2,color:black
+
+    style H stroke:#82A2A2,color:black
+    style I stroke:#82A2A2,color:black
+    style J stroke:#82A2A2,color:black
+    style K stroke:#82A2A2,color:black
+
+    linkStyle default stroke:#82A2A2,stroke-width:1.5
+
+    subgraph Frontends
+        A[Clang C/C++]
+        B[Rust]
+        C[Swift]
+        D[Custom Frontend]
+    end
+
+    subgraph Backends
+        direction TB
+        H[x86]
+        I[ARM]
+        J[WebAssembly]
+        K[PowerPC]
+    end
+
+    A -->| | H
+    B -->| | H
+    C -->| | H
+    D -->| | H
+
+    A -->| | I
+    B -->| | I
+    C -->| | I
+    D -->| | I
+
+    A -->| | J
+    B -->| | J
+    C -->| | J
+    D -->| | J
+
+    A -->| | K
+    B -->| | K
+    C -->| | K
+    D -->| | K
+```
+:::
+
+::: {.fragment .fade-in}
 ```{mermaid}
 graph LR
     subgraph Frontends
@@ -108,40 +212,17 @@ graph LR
     E --> J
     E --> K
 ```
+:::
 
-# What problems did/does `gcc`/`clang` enable? {auto-animate=true}
+:::
+:::
+:::
 
-```{mermaid}
-graph LR
-    subgraph Frontends
-        A[Qiskit]
-        B[Cirq]
-        C[OpenQASM]
-        D[PyTKET]
-    end
-
-    E[ucc]
-
-    subgraph Backends
-        H[IBMQ]
-        I[Quantinuum]
-        J[Google]
-    end
-
-    A --> E
-    B --> E
-    C --> E
-    D --> E
-
-    E --> H
-    E --> I
-    E --> J
-```
+<!-- TODO: mermaid diagram is almost unreadable -->
 
 # How can I use `ucc`?
 
 **Install**
-
 ```bash
 $ pip install ucc
 ```
@@ -207,4 +288,16 @@ Apply @ [**unitary.foundation/grants**]{style="color:red;"}
 
 :::
 
+#
 
+:::: columns
+
+::: {.column width="45%"}
+<img src="images/uccqrcode.png" alt="UCC repo QR Code" style="width: 90%; vertical-align: middle;">
+:::
+
+::: {.column width="55%" style="text-align:right; vertical-align: middle;"}
+[**Thank you!**]{.r-fit-text}
+:::
+
+::::
