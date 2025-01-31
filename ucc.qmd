@@ -231,10 +231,49 @@ $ pip install ucc
 ```python
 import ucc
 
-circuit = ...  # must be one of cirq, qiskit, PyTKET, qasm
+circuit = ...  # one of cirq, qiskit, PyTKET, qasm
 
 ucc.compile(circuit)
 ```
+
+# Can I customize the workflow? {.smaller}
+
+::: {.columns}
+::: {.column width="40%"}
+**Default passes:**
+```csv
+BasisTranslator
+Optimize1qGatesDecomposition
+CommutativeCancellation
+Collect2qBlocks
+ConsolidateBlocks
+UnitarySynthesis
+Optimize1qGatesDecomposition
+CollectCliffords
+HighLevelSynthesis
+```
+:::
+::: {.column width="60%"}
+```py
+from qiskit.transpiler.basepasses import TransformationPass
+from qiskit.dagcircuit import DAGCircuit
+from ucc import UCCDefault1
+
+ucc_compiler = UCCDefault1()
+
+class KAKDecomposition(TransformationPass):
+    def __init__(self):
+        super().__init__()
+
+    def run(self, dag: DAGCircuit) -> DAGCircuit:
+        #  Your code here
+        return better_dag
+
+ucc_compiler.pass_manager.append(KAKDecomposition())
+```
+:::
+:::
+
 
 # How does `ucc` perform?
 
