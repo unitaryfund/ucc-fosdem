@@ -62,21 +62,58 @@ Somtimes the word **transpiler** is used when the abtraction level of the input 
 
 # What is a quantum compiler? {auto-animate=true}
 
-<!-- {{< placeholder 1500 500 >}} -->
-
 :::: {.r-stack}
-::: {.fragment}
+::: {.fragment .fade-in-then-out}
 ![](images/circuit1.png)
 :::
 
-::: {.fragment}
+::: {.fragment .fade-in-then-out}
 ![](images/circuit2.png)
 :::
 
-::: {.fragment}
+::: {.fragment .fade-in-then-out}
 ![](images/circuit3.png)
 :::
 
+::: {.fragment .fade-in-then-out}
+![](images/circuit4.png)
+:::
+
+::: {.fragment .fade-in-then-out}
+![](images/circuit5.png)
+:::
+
+::: {.fragment .fade-in-then-out}
+![](images/circuit6.png)
+:::
+
+::: {.fragment .fade-in-then-out}
+![](images/circuit7.png)
+:::
+
+::: {.fragment .fade-in-then-out}
+![](images/circuit8.png)
+:::
+
+::: {.fragment .fade-in-then-out}
+![](images/circuit9.png)
+:::
+
+::: {.fragment .fade-in-then-out}
+![](images/circuit10.png)
+:::
+
+::: {.fragment .fade-in-then-out}
+![](images/circuit11.png)
+:::
+
+::: {.fragment .fade-in-then-out}
+![](images/circuit12.png)
+:::
+
+::: {.fragment .fade-in-then-out}
+![](images/circuit13.png)
+:::
 
 ::::
 

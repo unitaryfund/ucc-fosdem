@@ -17,17 +17,17 @@
 % &            & \qw     &            &            & \gate{}    & \qw     & \qw 
 % \end{quantikz}
 
-\begin{quantikz}[color=uccalt]
-& \gate[style={fill=red!20}]{R_z(\theta)}    & \gate[style={fill=red!20}]{R_z(\phi)} & \gate[3]{} & \qw        & \gate[2]{} & \gate{} & \qw \\
-& \gate[2]{} & \qw     &            & \gate[2]{} &            & \gate{} & \qw \\
-&            & \qw     &            &            & \gate{}    & \qw     & \qw 
-\end{quantikz}
-
 % \begin{quantikz}[color=uccalt]
-% & \gate[style={fill=green!20}]{}    & \phantomgate{}  & \gate[3]{} & \qw        & \gate[2]{} & \gate{} & \qw \\
-% & \gate[2]{} & \qw &            & \gate[2]{} &            & \gate{} & \qw \\
-% &            & \qw &            &            & \gate{}    & \qw & \qw
+% & \gate{}        & \qw      & \qw      & \gate[2,swap,style={fill=green!20}]{}  & \qw      & \gate[2,swap,style={fill=green!20}]{} & \qw      & \gate[2,swap,style={fill=green!20}]{}  & \qw      & \gate[2,swap,style={fill=green!20}]{} & \qw      & \ctrl{1} & \gate{T}         & \ctrl{1} & \qw        & \qw      & \gate[2]{} &  \qw \\
+% & \gate[2]{}     & \qw      & \ctrl{1} &                  & \ctrl{1} &                 & \ctrl{1} &                  & \ctrl{1} &                 & \gate{T} & \targ{}  & \gate{T^\dagger} & \targ{}  & \gate[2]{} & \gate{}  &            &  \qw \\
+% &                & \gate{H} & \targ{}  & \gate{T^\dagger} & \targ{}  & \gate{T}        & \targ{}  & \gate{T^\dagger} & \targ{}  & \qw             & \gate{T} & \gate{H} & \qw              & \qw      &            & \qw      & \gate{}    &  \qw 
 % \end{quantikz}
+
+\begin{quantikz}[color=uccalt]
+& \gate{}    & \ctrl{1}   & \qw        & \qw      & \gate[2]{} & \qw \\
+& \gate[2]{} & \ctrl{1}   & \gate[2]{} & \gate{}  &            & \qw \\
+&            & \targ{}    &            & \qw      & \gate{}    & \qw
+\end{quantikz}
 
 % \begin{quantikz}
 % & \gate{}    & \qw        & \gate[3]{} & \qw & \gate[2]{} & \gate{} \\
