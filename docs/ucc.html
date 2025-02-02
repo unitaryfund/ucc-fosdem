@@ -360,12 +360,76 @@ A group of objects or works to be seen, studied, or kept together.
 
 <section id="what-does-the-ecosystem-look-like" class="title-slide slide level1 center">
 <h1>What does the ecosystem look like?</h1>
+<div class="fragment">
 <div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">graph TD
+    style google fill:#F2CCA2,stroke:#82A2A2
+    style ibm fill:#F2CCA2,stroke:#82A2A2
+    style quantinuum fill:#F2CCA2,stroke:#82A2A2
+
+    style A stroke:#82A2A2,color:black
+    style B stroke:#82A2A2,color:black
+    style C stroke:#82A2A2,color:black
+    style D stroke:#82A2A2,color:black
+    style E stroke:#82A2A2,color:black
+    style F stroke:#82A2A2,color:black
+    style H stroke:#82A2A2,color:black
+
+    linkStyle default stroke:#82A2A2,stroke-width:1.5
+
+    subgraph google
+        A(Cirq)
+        B(Willow)
+        A --&gt;|cirq.transformers| B
+    end
+    subgraph ibm
+        C(Qiskit)
+        D(ibmq)
+        C --&gt;|qiskit.transpiler| D
+    end
+    subgraph quantinuum
+        E(tket)
+        H(tket2)
+        F(H2)
+        E --&gt;|pytket.passes| F
+        H --&gt; F
+    end
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="what-does-the-ecosystem-look-like-1" class="title-slide slide level1 center">
+<h1>What does the ecosystem look like?</h1>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    style google fill:#F2CCA2,stroke:#82A2A2
+    style ibm fill:#F2CCA2,stroke:#82A2A2
+    style quantinuum fill:#F2CCA2,stroke:#82A2A2
+
+    style A stroke:#82A2A2,color:black
+    style B stroke:#82A2A2,color:black
+    style C stroke:#82A2A2,color:black
+    style D stroke:#82A2A2,color:black
+    style E stroke:#82A2A2,color:black
+    style F stroke:#82A2A2,color:black
+    style G stroke:#82A2A2,color:black
+    style H stroke:#82A2A2,color:black
+
+    linkStyle default stroke:#82A2A2,stroke-width:1.5
+
     subgraph google
         A(Cirq)
         B(Willow)
@@ -384,18 +448,15 @@ A group of objects or works to be seen, studied, or kept together.
         H --&gt; F
     end
     G(QASM)
-    G --&gt; google
+    G -.-&gt; google
     G -.-&gt; ibm
-    G --&gt; quantinuum
-
-    %% C --&gt; G --&gt; A
+    G -.-&gt; quantinuum
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-<p>Lots of different frontends that are made by hardware providers to suit their own needs.</p>
 </section>
 
 <section id="whats-so-great-about-classical-compilers" class="title-slide slide level1 center">
@@ -427,18 +488,21 @@ A group of objects or works to be seen, studied, or kept together.
 
     linkStyle default stroke:#82A2A2,stroke-width:1.5
 
+    classDef largeFont font-size:48px;
+    class A,B,C,D,H,I,J,K largeFont
+
     subgraph Frontends
         A[Clang C/C++]
         B[Rust]
         C[Swift]
-        D[Custom Frontend]
+        D[Custom]
     end
 
     subgraph Backends
         direction TB
         H[x86]
         I[ARM]
-        J[WebAssembly]
+        J[Wasm]
         K[PowerPC]
     end
 
@@ -475,11 +539,29 @@ A group of objects or works to be seen, studied, or kept together.
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">graph LR
+    style Frontends fill:#F2CCA2,stroke:#F2CCA2
+    style Backends fill:#F2CCA2,stroke:#F2CCA2
+
+    style A stroke:#82A2A2,color:black
+    style B stroke:#82A2A2,color:black
+    style C stroke:#82A2A2,color:black
+    style D stroke:#82A2A2,color:black
+    style E stroke:#82A2A2,color:black
+
+    style H stroke:#82A2A2,color:black
+    style I stroke:#82A2A2,color:black
+    style J stroke:#82A2A2,color:black
+    style K stroke:#82A2A2,color:black
+
+    linkStyle default stroke:#82A2A2,stroke-width:1.5
+    classDef largeFont font-size:48px;
+    class A,B,C,D,E,H,I,J,K largeFont
+
     subgraph Frontends
         A[Clang C/C++]
         B[Rust]
         C[Swift]
-        D[Custom Frontend]
+        D[Custom]
     end
 
     E[gcc]
@@ -487,7 +569,7 @@ A group of objects or works to be seen, studied, or kept together.
     subgraph Backends
         H[x86]
         I[ARM]
-        J[WebAssembly]
+        J[Wasm]
         K[PowerPC]
     end
 
@@ -509,19 +591,60 @@ A group of objects or works to be seen, studied, or kept together.
 </div>
 </div>
 </div></div>
-<!-- TODO: mermaid diagram is almost unreadable -->
 </section>
 
 <section id="how-can-i-use-ucc" class="title-slide slide level1 center">
 <h1>How can I use <code>ucc</code>?</h1>
+<div class="fragment fade-in-then-semi-out">
 <p><strong>Install</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a></a><span class="ex">$</span> pip install ucc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
 <p><strong>Run!</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a><span class="im">import</span> ucc</span>
 <span id="cb2-2"><a></a></span>
-<span id="cb2-3"><a></a>circuit <span class="op">=</span> ...  <span class="co"># must be one of cirq, qiskit, PyTKET, qasm</span></span>
+<span id="cb2-3"><a></a>circuit <span class="op">=</span> ...  <span class="co"># one of cirq, qiskit, PyTKET, qasm</span></span>
 <span id="cb2-4"><a></a></span>
 <span id="cb2-5"><a></a>ucc.<span class="bu">compile</span>(circuit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+
+<section id="can-i-customize-the-workflow" class="title-slide slide level1 smaller center">
+<h1>Can I customize the workflow?</h1>
+<div class="columns">
+<div class="column" style="width:40%;">
+<div class="fragment fade-in-then-semi-out">
+<p><strong>Default passes:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource csv number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>BasisTranslator</span>
+<span id="cb3-2"><a></a>Optimize1qGatesDecomposition</span>
+<span id="cb3-3"><a></a>CommutativeCancellation</span>
+<span id="cb3-4"><a></a>Collect2qBlocks</span>
+<span id="cb3-5"><a></a>ConsolidateBlocks</span>
+<span id="cb3-6"><a></a>UnitarySynthesis</span>
+<span id="cb3-7"><a></a>Optimize1qGatesDecomposition</span>
+<span id="cb3-8"><a></a>CollectCliffords</span>
+<span id="cb3-9"><a></a>HighLevelSynthesis</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:60%;">
+<div class="fragment">
+<p><strong>Custom pass:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource py number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="im">from</span> qiskit.transpiler.basepasses <span class="im">import</span> TransformationPass</span>
+<span id="cb4-2"><a></a><span class="im">from</span> qiskit.dagcircuit <span class="im">import</span> DAGCircuit</span>
+<span id="cb4-3"><a></a><span class="im">from</span> ucc <span class="im">import</span> UCCDefault1</span>
+<span id="cb4-4"><a></a></span>
+<span id="cb4-5"><a></a>ucc_compiler <span class="op">=</span> UCCDefault1()</span>
+<span id="cb4-6"><a></a></span>
+<span id="cb4-7"><a></a><span class="kw">class</span> KAKDecomposition(TransformationPass):</span>
+<span id="cb4-8"><a></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb4-9"><a></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb4-10"><a></a></span>
+<span id="cb4-11"><a></a>    <span class="kw">def</span> run(<span class="va">self</span>, dag: DAGCircuit) <span class="op">-&gt;</span> DAGCircuit:</span>
+<span id="cb4-12"><a></a>        <span class="co">#  Your code here</span></span>
+<span id="cb4-13"><a></a>        <span class="cf">return</span> better_dag</span>
+<span id="cb4-14"><a></a></span>
+<span id="cb4-15"><a></a>ucc_compiler.pass_manager.append(KAKDecomposition())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
 </section>
 
 <section id="how-does-ucc-perform" class="title-slide slide level1 center">
@@ -573,7 +696,18 @@ A group of objects or works to be seen, studied, or kept together.
 <li>Short online applications</li>
 </ul>
 <div class="fragment">
-<p>Apply @ <span style="color:red;"><strong>unitary.foundation/grants</strong></span></p>
+<div style="font-size: 1.3em;">
+<div class="callout callout-tip callout-style-simple">
+<div class="callout-body">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-content">
+<p>Apply @ <code><span style="color:green;"><strong>unitary.foundation/grants</strong></span></code></p>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div></div>
 </section>

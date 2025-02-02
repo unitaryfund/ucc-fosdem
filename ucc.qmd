@@ -89,8 +89,62 @@ a quantum compiler
 
 # What does the ecosystem look like?
 
+::: {.fragment}
 ```{mermaid}
 graph TD
+    style google fill:#F2CCA2,stroke:#82A2A2
+    style ibm fill:#F2CCA2,stroke:#82A2A2
+    style quantinuum fill:#F2CCA2,stroke:#82A2A2
+
+    style A stroke:#82A2A2,color:black
+    style B stroke:#82A2A2,color:black
+    style C stroke:#82A2A2,color:black
+    style D stroke:#82A2A2,color:black
+    style E stroke:#82A2A2,color:black
+    style F stroke:#82A2A2,color:black
+    style H stroke:#82A2A2,color:black
+
+    linkStyle default stroke:#82A2A2,stroke-width:1.5
+
+    subgraph google
+        A(Cirq)
+        B(Willow)
+        A -->|cirq.transformers| B
+    end
+    subgraph ibm
+        C(Qiskit)
+        D(ibmq)
+        C -->|qiskit.transpiler| D
+    end
+    subgraph quantinuum
+        E(tket)
+        H(tket2)
+        F(H2)
+        E -->|pytket.passes| F
+        H --> F
+    end
+```
+:::
+
+# What does the ecosystem look like?
+
+```{mermaid}
+graph TD
+    style google fill:#F2CCA2,stroke:#82A2A2
+    style ibm fill:#F2CCA2,stroke:#82A2A2
+    style quantinuum fill:#F2CCA2,stroke:#82A2A2
+
+    style A stroke:#82A2A2,color:black
+    style B stroke:#82A2A2,color:black
+    style C stroke:#82A2A2,color:black
+    style D stroke:#82A2A2,color:black
+    style E stroke:#82A2A2,color:black
+    style F stroke:#82A2A2,color:black
+    style G stroke:#82A2A2,color:black
+    style H stroke:#82A2A2,color:black
+
+    linkStyle default stroke:#82A2A2,stroke-width:1.5
+
     subgraph google
         A(Cirq)
         B(Willow)
@@ -109,14 +163,11 @@ graph TD
         H --> F
     end
     G(QASM)
-    G --> google
+    G -.-> google
     G -.-> ibm
-    G --> quantinuum
-
-    %% C --> G --> A
+    G -.-> quantinuum
 ```
 
-Lots of different frontends that are made by hardware providers to suit their own needs.
 
 # What's so great about (classical) compilers?
 
@@ -146,18 +197,21 @@ graph LR
 
     linkStyle default stroke:#82A2A2,stroke-width:1.5
 
+    classDef largeFont font-size:48px;
+    class A,B,C,D,H,I,J,K largeFont
+
     subgraph Frontends
         A[Clang C/C++]
         B[Rust]
         C[Swift]
-        D[Custom Frontend]
+        D[Custom]
     end
 
     subgraph Backends
         direction TB
         H[x86]
         I[ARM]
-        J[WebAssembly]
+        J[Wasm]
         K[PowerPC]
     end
 
@@ -186,11 +240,29 @@ graph LR
 ::: {.fragment .fade-in}
 ```{mermaid}
 graph LR
+    style Frontends fill:#F2CCA2,stroke:#F2CCA2
+    style Backends fill:#F2CCA2,stroke:#F2CCA2
+
+    style A stroke:#82A2A2,color:black
+    style B stroke:#82A2A2,color:black
+    style C stroke:#82A2A2,color:black
+    style D stroke:#82A2A2,color:black
+    style E stroke:#82A2A2,color:black
+
+    style H stroke:#82A2A2,color:black
+    style I stroke:#82A2A2,color:black
+    style J stroke:#82A2A2,color:black
+    style K stroke:#82A2A2,color:black
+
+    linkStyle default stroke:#82A2A2,stroke-width:1.5
+    classDef largeFont font-size:48px;
+    class A,B,C,D,E,H,I,J,K largeFont
+
     subgraph Frontends
         A[Clang C/C++]
         B[Rust]
         C[Swift]
-        D[Custom Frontend]
+        D[Custom]
     end
 
     E[gcc]
@@ -198,7 +270,7 @@ graph LR
     subgraph Backends
         H[x86]
         I[ARM]
-        J[WebAssembly]
+        J[Wasm]
         K[PowerPC]
     end
 
@@ -212,21 +284,24 @@ graph LR
     E --> J
     E --> K
 ```
+
 :::
 
 :::
 :::
 :::
 
-<!-- TODO: mermaid diagram is almost unreadable -->
 
 # How can I use `ucc`?
 
+::: {.fragment .fade-in-then-semi-out}
 **Install**
 ```bash
 $ pip install ucc
 ```
+:::
 
+::: {.fragment}
 **Run!**
 ```python
 import ucc
@@ -235,11 +310,13 @@ circuit = ...  # one of cirq, qiskit, PyTKET, qasm
 
 ucc.compile(circuit)
 ```
+:::
 
 # Can I customize the workflow? {.smaller}
 
 ::: {.columns}
 ::: {.column width="40%"}
+::: {.fragment .fade-in-then-semi-out}
 **Default passes:**
 ```csv
 BasisTranslator
@@ -253,7 +330,10 @@ CollectCliffords
 HighLevelSynthesis
 ```
 :::
+:::
 ::: {.column width="60%"}
+::: {.fragment}
+**Custom pass:**
 ```py
 from qiskit.transpiler.basepasses import TransformationPass
 from qiskit.dagcircuit import DAGCircuit
@@ -271,6 +351,7 @@ class KAKDecomposition(TransformationPass):
 
 ucc_compiler.pass_manager.append(KAKDecomposition())
 ```
+:::
 :::
 :::
 
@@ -321,7 +402,9 @@ docs: [`ucc.readthedocs.io`](https://ucc.readthedocs.io/en/latest/)
 - Short online applications
 
 ::: {.fragment}
-Apply @ [**unitary.foundation/grants**]{style="color:red;"}
+::: {.callout-tip appearance="simple" style="font-size: 1.3em;"}
+Apply @ <code>[**unitary.foundation/grants**]{style="color:green;"}</code>
+:::
 :::
 :::
 
