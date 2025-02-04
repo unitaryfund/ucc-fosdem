@@ -59,7 +59,7 @@
         "\n",
         ":::: {.r-stack}\n",
         "::: {.callout-warning title=\"Terminology\" .fragment .fade-in-then-out}\n",
-        "Somtimes the word **transpiler** is used when the abtraction level of the input and output are the same.\n",
+        "Sometimes the word **transpiler** is used when the abtraction level of the input and output are the same.\n",
         ":::\n",
         "\n",
         "::: {.fragment}\n",
