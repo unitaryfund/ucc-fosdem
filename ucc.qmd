@@ -50,7 +50,7 @@ Or if you aren't a group theory nerd, operations that are trivially reversible: 
 
 :::: {.r-stack}
 ::: {.callout-warning title="Terminology" .fragment .fade-in-then-out}
-Somtimes the word **transpiler** is used when the abtraction level of the input and output are the same.
+Sometimes the word **transpiler** is used when the abtraction level of the input and output are the same.
 :::
 
 ::: {.fragment}
